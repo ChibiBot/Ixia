@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpgtutorial", "Rpgtutorial\Rpgtutorial.csproj", "{391030E0-FB66-4A6A-B5D8-4486FD4DED65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TileMapEditor", "TileMapEditor\TileMapEditor.csproj", "{144F7550-ED7A-4150-8EE5-618F659A155E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{391030E0-FB66-4A6A-B5D8-4486FD4DED65}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{391030E0-FB66-4A6A-B5D8-4486FD4DED65}.Debug|ARM.ActiveCfg = Debug|x86
+		{391030E0-FB66-4A6A-B5D8-4486FD4DED65}.Debug|x86.ActiveCfg = Debug|x86
+		{391030E0-FB66-4A6A-B5D8-4486FD4DED65}.Debug|x86.Build.0 = Debug|x86
+		{391030E0-FB66-4A6A-B5D8-4486FD4DED65}.Release|Any CPU.ActiveCfg = Release|x86
+		{391030E0-FB66-4A6A-B5D8-4486FD4DED65}.Release|ARM.ActiveCfg = Release|x86
+		{391030E0-FB66-4A6A-B5D8-4486FD4DED65}.Release|x86.ActiveCfg = Release|x86
+		{391030E0-FB66-4A6A-B5D8-4486FD4DED65}.Release|x86.Build.0 = Release|x86
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Debug|ARM.Build.0 = Debug|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Debug|x86.Build.0 = Debug|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Release|ARM.ActiveCfg = Release|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Release|ARM.Build.0 = Release|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Release|x86.ActiveCfg = Release|Any CPU
+		{144F7550-ED7A-4150-8EE5-618F659A155E}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
