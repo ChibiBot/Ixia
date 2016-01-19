@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework;
 
 namespace Rpgtutorial
 {
+    
+    /// <summary>
+    /// Simple effect that changes the transparency of an image from opaque to invisible
+    /// </summary>
     public class FadeEffect : ImageEffect
     {
         public float FadeSpeed;

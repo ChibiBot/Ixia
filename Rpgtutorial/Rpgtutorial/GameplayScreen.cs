@@ -9,6 +9,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Rpgtutorial
 {
+    /// <summary>
+    /// Gameplay screen.  Loads player data and map data.
+    /// When this is loaded the gameplay starts.
+    /// </summary>
     public class GameplayScreen : GameScreen
     {
 
