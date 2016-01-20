@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Menu>  
+<Menu>
   <Axis>Y</Axis>
   <Effects>FadeEffect</Effects>
-  
+
   <Item>
     <LinkType>Screen</LinkType>
     <LinkID>GameplayScreen</LinkID>
@@ -28,5 +28,4 @@
       <Text>Credits</Text>
     </Image>
   </Item>
-  
 </Menu>

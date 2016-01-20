@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Menu>  
+<Menu>
   <Axis>Y</Axis>
-  
+
   <Item>
     <LinkType>Menu</LinkType>
     <LinkID>Content/Load/Menus/TitleMenu.xml</LinkID>
@@ -27,5 +27,4 @@
       <Text>July 21</Text>
     </Image>
   </Item>
-  
 </Menu>

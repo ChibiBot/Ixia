@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Rpgtutorial
+﻿namespace Rpgtutorial
 {
-    public enum SpriteStates
-    {
-        Passive,
-        Solid
-    };
+     public enum SpriteStates
+     {
+          Passive,
+          Solid
+     };
 }

@@ -1,17 +1,21 @@
 #region File Description
+
 //-----------------------------------------------------------------------------
 // GraphicsDeviceService.cs
 //
 // Microsoft XNA Community Game Platform
 // Copyright (C) Microsoft Corporation. All rights reserved.
 //-----------------------------------------------------------------------------
-#endregion
+
+#endregion File Description
 
 #region Using Statements
+
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Threading;
-using Microsoft.Xna.Framework.Graphics;
-#endregion
+
+#endregion Using Statements
 
 // The IGraphicsDeviceService interface requires a DeviceCreated event, but we
 // always just create the device inside our constructor, so we have no place to
@@ -21,136 +25,126 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TileMapEditor
 {
-    /// <summary>
-    /// Helper class responsible for creating and managing the GraphicsDevice.
-    /// All GraphicsDeviceControl instances share the same GraphicsDeviceService,
-    /// so even though there can be many controls, there will only ever be a single
-    /// underlying GraphicsDevice. This implements the standard IGraphicsDeviceService
-    /// interface, which provides notification events for when the device is reset
-    /// or disposed.
-    /// </summary>
-    class GraphicsDeviceService : IGraphicsDeviceService
-    {
-        #region Fields
+     /// <summary>
+     /// Helper class responsible for creating and managing the GraphicsDevice.
+     /// All GraphicsDeviceControl instances share the same GraphicsDeviceService,
+     /// so even though there can be many controls, there will only ever be a single
+     /// underlying GraphicsDevice. This implements the standard IGraphicsDeviceService
+     /// interface, which provides notification events for when the device is reset
+     /// or disposed.
+     /// </summary>
+     internal class GraphicsDeviceService : IGraphicsDeviceService
+     {
+          #region Fields
 
+          // Singleton device service instance.
+          private static GraphicsDeviceService singletonInstance;
 
-        // Singleton device service instance.
-        static GraphicsDeviceService singletonInstance;
+          // Keep track of how many controls are sharing the singletonInstance.
+          private static int referenceCount;
 
+          #endregion Fields
 
-        // Keep track of how many controls are sharing the singletonInstance.
-        static int referenceCount;
+          /// <summary>
+          /// Constructor is private, because this is a singleton class:
+          /// client controls should use the public AddRef method instead.
+          /// </summary>
+          private GraphicsDeviceService(IntPtr windowHandle, int width, int height)
+          {
+               parameters = new PresentationParameters();
 
+               parameters.BackBufferWidth = Math.Max(width, 1);
+               parameters.BackBufferHeight = Math.Max(height, 1);
+               parameters.BackBufferFormat = SurfaceFormat.Color;
+               parameters.DepthStencilFormat = DepthFormat.Depth24;
+               //parameters.DeviceWindowHandle = windowHandle;
+               parameters.PresentationInterval = PresentInterval.Immediate;
+               parameters.IsFullScreen = false;
 
-        #endregion
+               graphicsDevice = new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
+                                                   GraphicsProfile.Reach,
+                                                   parameters);
+          }
 
+          /// <summary>
+          /// Gets a reference to the singleton instance.
+          /// </summary>
+          public static GraphicsDeviceService AddRef(IntPtr windowHandle,
+                                                     int width, int height)
+          {
+               // Increment the "how many controls sharing the device" reference count.
+               if (Interlocked.Increment(ref referenceCount) == 1)
+               {
+                    // If this is the first control to start using the
+                    // device, we must create the singleton instance.
+                    singletonInstance = new GraphicsDeviceService(windowHandle,
+                                                                  width, height);
+               }
 
-        /// <summary>
-        /// Constructor is private, because this is a singleton class:
-        /// client controls should use the public AddRef method instead.
-        /// </summary>
-        GraphicsDeviceService(IntPtr windowHandle, int width, int height)
-        {
-            parameters = new PresentationParameters();
+               return singletonInstance;
+          }
 
-            parameters.BackBufferWidth = Math.Max(width, 1);
-            parameters.BackBufferHeight = Math.Max(height, 1);
-            parameters.BackBufferFormat = SurfaceFormat.Color;
-            parameters.DepthStencilFormat = DepthFormat.Depth24;
-            //parameters.DeviceWindowHandle = windowHandle;
-            parameters.PresentationInterval = PresentInterval.Immediate;
-            parameters.IsFullScreen = false;
+          /// <summary>
+          /// Releases a reference to the singleton instance.
+          /// </summary>
+          public void Release(bool disposing)
+          {
+               // Decrement the "how many controls sharing the device" reference count.
+               if (Interlocked.Decrement(ref referenceCount) == 0)
+               {
+                    // If this is the last control to finish using the
+                    // device, we should dispose the singleton instance.
+                    if (disposing)
+                    {
+                         if (DeviceDisposing != null)
+                              DeviceDisposing(this, EventArgs.Empty);
 
-            
+                         graphicsDevice.Dispose();
+                    }
 
-            graphicsDevice = new GraphicsDevice(GraphicsAdapter.DefaultAdapter,
-                                                GraphicsProfile.Reach,
-                                                parameters);
+                    graphicsDevice = null;
+               }
+          }
 
-        }
+          /// <summary>
+          /// Resets the graphics device to whichever is bigger out of the specified
+          /// resolution or its current size. This behavior means the device will
+          /// demand-grow to the largest of all its GraphicsDeviceControl clients.
+          /// </summary>
+          public void ResetDevice(int width, int height)
+          {
+               if (DeviceResetting != null)
+                    DeviceResetting(this, EventArgs.Empty);
 
+               parameters.BackBufferWidth = Math.Max(parameters.BackBufferWidth, width);
+               parameters.BackBufferHeight = Math.Max(parameters.BackBufferHeight, height);
 
-        /// <summary>
-        /// Gets a reference to the singleton instance.
-        /// </summary>
-        public static GraphicsDeviceService AddRef(IntPtr windowHandle,
-                                                   int width, int height)
-        {
-            // Increment the "how many controls sharing the device" reference count.
-            if (Interlocked.Increment(ref referenceCount) == 1)
-            {
-                // If this is the first control to start using the
-                // device, we must create the singleton instance.
-                singletonInstance = new GraphicsDeviceService(windowHandle,
-                                                              width, height);
-            }
+               //graphicsDevice.Reset(parameters);
 
-            return singletonInstance;
-        }
+               if (DeviceReset != null)
+                    DeviceReset(this, EventArgs.Empty);
+          }
 
+          /// <summary>
+          /// Gets the current graphics device.
+          /// </summary>
+          public GraphicsDevice GraphicsDevice
+          {
+               get { return graphicsDevice; }
+          }
 
-        /// <summary>
-        /// Releases a reference to the singleton instance.
-        /// </summary>
-        public void Release(bool disposing)
-        {
-            // Decrement the "how many controls sharing the device" reference count.
-            if (Interlocked.Decrement(ref referenceCount) == 0)
-            {
-                // If this is the last control to finish using the
-                // device, we should dispose the singleton instance.
-                if (disposing)
-                {
-                    if (DeviceDisposing != null)
-                        DeviceDisposing(this, EventArgs.Empty);
+          private GraphicsDevice graphicsDevice;
 
-                    graphicsDevice.Dispose();
-                }
+          // Store the current device settings.
+          private PresentationParameters parameters;
 
-                graphicsDevice = null;
-            }
-        }
+          // IGraphicsDeviceService events.
+          public event EventHandler<EventArgs> DeviceCreated;
 
-        
-        /// <summary>
-        /// Resets the graphics device to whichever is bigger out of the specified
-        /// resolution or its current size. This behavior means the device will
-        /// demand-grow to the largest of all its GraphicsDeviceControl clients.
-        /// </summary>
-        public void ResetDevice(int width, int height)
-        {
-            if (DeviceResetting != null)
-                DeviceResetting(this, EventArgs.Empty);
+          public event EventHandler<EventArgs> DeviceDisposing;
 
-            parameters.BackBufferWidth = Math.Max(parameters.BackBufferWidth, width);
-            parameters.BackBufferHeight = Math.Max(parameters.BackBufferHeight, height);
+          public event EventHandler<EventArgs> DeviceReset;
 
-            //graphicsDevice.Reset(parameters);
-
-            if (DeviceReset != null)
-                DeviceReset(this, EventArgs.Empty);
-        }
-
-        
-        /// <summary>
-        /// Gets the current graphics device.
-        /// </summary>
-        public GraphicsDevice GraphicsDevice
-        {
-            get { return graphicsDevice; }
-        }
-
-        GraphicsDevice graphicsDevice;
-
-
-        // Store the current device settings.
-        PresentationParameters parameters;
-
-
-        // IGraphicsDeviceService events.
-        public event EventHandler<EventArgs> DeviceCreated;
-        public event EventHandler<EventArgs> DeviceDisposing;
-        public event EventHandler<EventArgs> DeviceReset;
-        public event EventHandler<EventArgs> DeviceResetting;
-    }
+          public event EventHandler<EventArgs> DeviceResetting;
+     }
 }

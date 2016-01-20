@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Player>
-  <Image>    
+  <Image>
     <Path>Load/Gameplay/Player</Path>
     <Effects>SpriteSheetEffect</Effects>
   </Image>
