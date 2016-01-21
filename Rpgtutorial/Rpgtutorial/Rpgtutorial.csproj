@@ -42,25 +42,25 @@
     <StartupObject>Rpgtutorial.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="FadeEffect.cs" />
+    <Compile Include="Effect\FadeEffect.cs" />
     <Compile Include="GameplayScreen.cs" />
     <Compile Include="GameScreen.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Image.cs" />
-    <Compile Include="ImageEffect.cs" />
-    <Compile Include="Input.cs" />
+    <Compile Include="Effect\ImageEffect.cs" />
+    <Compile Include="Util\Input.cs" />
     <Compile Include="Layer.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="MenuControl.cs" />
-    <Compile Include="MenuItem.cs" />
+    <Compile Include="Level\Map.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\MenuControl.cs" />
+    <Compile Include="Menu\MenuItem.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen.cs" />
-    <Compile Include="Serializer.cs" />
+    <Compile Include="Util\Serializer.cs" />
     <Compile Include="SplashScreen.cs" />
-    <Compile Include="SpriteSheetEffect.cs" />
+    <Compile Include="Effect\SpriteSheetEffect.cs" />
     <Compile Include="SpriteStates.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="TitleScreen.cs" />

@@ -15,7 +15,7 @@ namespace Rpgtutorial
      {
           private const int m_WIDTH = 640;
           private const int m_HEIGHT = 480;
-          private static Screen m_INSTANCE;
+          private static Screen m_instance;
 
           [XmlIgnore]
           public Vector2 Dimensions { private set; get; }
@@ -46,13 +46,13 @@ namespace Rpgtutorial
           {
                get
                {
-                    if (m_INSTANCE == null)
+                    if (m_instance == null)
                     {
                          Serializer<Screen> xml = new Serializer<Screen>();
-                         m_INSTANCE = xml.Load("Content/Load/Screen.xml");
+                         m_instance = xml.Load("Content/Load/Screen.xml");
                     }
 
-                    return m_INSTANCE;
+                    return m_instance;
                }
           }
 
@@ -141,6 +141,9 @@ namespace Rpgtutorial
                }
           }
 
+          /// <summary>
+          /// Singleton constructor.
+          /// </summary>
           private Screen()
           {
                //Singleton class hiding constructor
