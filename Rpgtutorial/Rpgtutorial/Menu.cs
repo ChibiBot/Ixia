@@ -7,6 +7,9 @@ using System.Xml.Serialization;
 
 namespace Rpgtutorial
 {
+     /// <summary>
+     /// Menu screen for the main game.
+     /// </summary>
      public class Menu
      {
           public event EventHandler OnMenuChange;
@@ -35,6 +38,10 @@ namespace Rpgtutorial
                }
           }
 
+          /// <summary>
+          /// Default constructor  Sets the axis in use and
+          /// creates a new list of menu items.
+          /// </summary>
           public Menu()
           {
                m_id = String.Empty;
@@ -44,16 +51,23 @@ namespace Rpgtutorial
                Items = new List<MenuItem>();
           }
 
+          /// <summary>
+          /// Special effect to highlight the current selection with
+          /// a fade in and fade out effect.
+          /// </summary>
+          /// <param name="alpha"></param>
           public void Transition(float alpha)
           {
                foreach (MenuItem item in Items)
                {
                     item.Image.IsActive = true;
                     item.Image.Alpha = alpha;
+                    // Is it invisible
                     if (alpha == 0.0f)
                     {
                          item.Image.FadeEffect.Increase = true;
                     }
+                    // Still visible
                     else
                     {
                          item.Image.FadeEffect.Increase = false;
@@ -61,6 +75,9 @@ namespace Rpgtutorial
                }
           }
 
+          /// <summary>
+          /// Loads the effects and images
+          /// </summary>
           public void LoadContent()
           {
                String[] split = Effects.Split(':');
@@ -75,6 +92,9 @@ namespace Rpgtutorial
                }
           }
 
+          /// <summary>
+          /// Unloads the images
+          /// </summary>
           public void UnloadContent()
           {
                foreach (MenuItem item in Items)
@@ -83,8 +103,13 @@ namespace Rpgtutorial
                }
           }
 
+          /// <summary>
+          /// Updates the selection based on the gametime and input.
+          /// </summary>
+          /// <param name="gameTime"></param>
           public void Update(GameTime gameTime)
           {
+               // Left-Right sleection mode
                if (Axis == "X")
                {
                     if (Input.Instance.KeyPressed(Keys.Right))
@@ -96,6 +121,7 @@ namespace Rpgtutorial
                          m_itemNumber--;
                     }
                }
+               // Up-Down selection mode
                else if (Axis == "Y")
                {
                     if (Input.Instance.KeyPressed(Keys.Down))
@@ -107,7 +133,13 @@ namespace Rpgtutorial
                          m_itemNumber--;
                     }
                }
+               else
+               {
+                    throw new ArgumentException("Invalid axis: " + Axis);
+               }
 
+               // Wrap the selection to the last item in the list when
+               // the first selection goes in a negative direction
                if (m_itemNumber < 0)
                {
                     m_itemNumber = Items.Count - 1;
@@ -132,6 +164,10 @@ namespace Rpgtutorial
                }
           }
 
+          /// <summary>
+          /// Draws the menu
+          /// </summary>
+          /// <param name="spriteBatch"></param>
           public void Draw(SpriteBatch spriteBatch)
           {
                foreach (MenuItem item in Items)
@@ -140,6 +176,9 @@ namespace Rpgtutorial
                }
           }
 
+          /// <summary>
+          /// Menu layout calculations.
+          /// </summary>
           private void AlignMenuItems()
           {
                Vector2 dimensions = Vector2.Zero;

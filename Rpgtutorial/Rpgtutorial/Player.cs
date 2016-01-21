@@ -14,7 +14,7 @@ namespace Rpgtutorial
           public Image Image;
           public Vector2 Velocity;
           public float MoveSpeed;
-          public int MoveIncrement = 16;
+          private const int m_MOVE_INCREMENT = 16;
 
           /// <summary>
           /// Constructor defaults the velocity to zero

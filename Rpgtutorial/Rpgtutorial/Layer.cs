@@ -129,6 +129,11 @@ namespace Rpgtutorial
                }
           }
 
+          /// <summary>
+          /// Draws the layer using a spritebatch and a specific draw type.
+          /// </summary>
+          /// <param name="spriteBatch"></param>
+          /// <param name="drawType"></param>
           public void Draw(SpriteBatch spriteBatch, DrawType drawType)
           {
                List<Tile> tiles;
