@@ -57,7 +57,7 @@ namespace TileMapEditor
             parameters.BackBufferHeight = Math.Max(height, 1);
             parameters.BackBufferFormat = SurfaceFormat.Color;
             parameters.DepthStencilFormat = DepthFormat.Depth24;
-            //parameters.DeviceWindowHandle = windowHandle;
+            parameters.DeviceWindowHandle = windowHandle;
             parameters.PresentationInterval = PresentInterval.Immediate;
             parameters.IsFullScreen = false;
 

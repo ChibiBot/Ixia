@@ -82,7 +82,7 @@ namespace Rpgtutorial
                 {
                     m_currentScreen.UnloadContent();
                     m_currentScreen = m_newScreen;
-                    m_xmlGameScreen.Type = m_currentScreen.Type;
+                    m_xmlGameScreen.Type = m_currentScreen.GetType();
                     if (File.Exists(m_currentScreen.XmlPath))
                     {
                         m_currentScreen = m_xmlGameScreen.Load(m_currentScreen.XmlPath);
@@ -150,8 +150,7 @@ namespace Rpgtutorial
             Dimensions = new Vector2(m_WIDTH, m_HEIGHT);
             m_currentScreen = new GameplayScreen();
             m_xmlGameScreen = new Serializer<GameScreen>();
-            m_xmlGameScreen.Type = m_currentScreen.Type;
-            // m_currentScreen = m_xmlGameScreen.Load("Content/Load/SplashScreen.xml");
+            m_xmlGameScreen.Type = m_currentScreen.GetType();
         }
     }
 }

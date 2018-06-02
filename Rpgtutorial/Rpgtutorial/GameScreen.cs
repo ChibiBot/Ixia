@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Rpgtutorial.Util;
 using System;
 using System.Xml.Serialization;
 
@@ -13,19 +14,14 @@ namespace Rpgtutorial
     public class GameScreen
     {
         protected ContentManager content;
-
-        [XmlIgnore]
-        public Type Type;
-
-        public String XmlPath;
+        public string XmlPath;
 
         /// <summary>
         /// Default constructor.
         /// </summary>
         public GameScreen()
         {
-            Type = this.GetType();
-            XmlPath = "Content/Load/" + Type.ToString().Replace("Rpgtutorial.", "") + ".xml";
+            XmlPath = FileUtils.getLoadPath(this.GetType());
         }
 
         public virtual void LoadContent()

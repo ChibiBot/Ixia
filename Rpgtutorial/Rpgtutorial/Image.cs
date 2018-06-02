@@ -13,7 +13,7 @@ namespace Rpgtutorial
     public class Image
     {
         // Get the name of this class's name space for parsing
-        private static string NAMESPACE_PREFIX = typeof(Image).Namespace;
+        private static readonly string NAMESPACE_PREFIX = typeof(Image).Namespace;
 
         //Public variables
         [XmlIgnore]
@@ -32,7 +32,6 @@ namespace Rpgtutorial
 
         //Member variables
         private Vector2 m_origin;
-
         private ContentManager m_content;
         private RenderTarget2D m_renderTarget;
         private SpriteFont m_font;

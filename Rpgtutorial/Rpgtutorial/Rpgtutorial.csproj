@@ -52,6 +52,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Effect\ImageEffect.cs" />
+    <Compile Include="Util\FileUtils.cs" />
     <Compile Include="Util\Input.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Level\Map.cs" />

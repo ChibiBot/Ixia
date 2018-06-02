@@ -18,37 +18,19 @@ namespace Rpgtutorial
         public class TileMap
         {
             [XmlElement("Row")]
-            public List<String> Row;
-
-            public TileMap()
-            {
-                Row = new List<String>();
-            }
+            public List<String> Row = new List<String>();
         }
 
         [XmlElement("TileMap")]
         public TileMap Tile;
 
-        public Image Image;
-        public String SolidTiles;
-        public String OverlayTiles;
+        public Image Image = new Image();
+        public String SolidTiles = String.Empty;
+        public String OverlayTiles = String.Empty;
 
         private SpriteStates m_state;
-        private List<Tile> m_underLayTiles;
-        private List<Tile> m_overlayTiles;
-
-        /// <summary>
-        /// Default constructor for Layer,
-        /// Creates a new image, overlay tiles, and underlay tiles.
-        /// </summary>
-        public Layer()
-        {
-            Image = new Image();
-            m_underLayTiles = new List<Tile>();
-            m_overlayTiles = new List<Tile>();
-            SolidTiles = String.Empty;
-            OverlayTiles = String.Empty;
-        }
+        private List<Tile> m_underLayTiles = new List<Tile>();
+        private List<Tile> m_overlayTiles = new List<Tile>();
 
         /// <summary>
         /// Loads the tile dimensions with the pipeline
