@@ -6,46 +6,46 @@ using System.Xml.Serialization;
 
 namespace Rpgtutorial
 {
-     /// <summary>
-     /// Generic game screen.  Contains the xml path and loads the screen into the content manager.
-     ///
-     /// </summary>
-     public class GameScreen
-     {
-          protected ContentManager content;
+    /// <summary>
+    /// Generic game screen.  Contains the xml path and loads the screen into the content manager.
+    ///
+    /// </summary>
+    public class GameScreen
+    {
+        protected ContentManager content;
 
-          [XmlIgnore]
-          public Type Type;
+        [XmlIgnore]
+        public Type Type;
 
-          public String XmlPath;
+        public String XmlPath;
 
-          /// <summary>
-          /// Default constructor.
-          /// </summary>
-          public GameScreen()
-          {
-               Type = this.GetType();
-               XmlPath = "Content/Load/" + Type.ToString().Replace("Rpgtutorial.", "") + ".xml";
-          }
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        public GameScreen()
+        {
+            Type = this.GetType();
+            XmlPath = "Content/Load/" + Type.ToString().Replace("Rpgtutorial.", "") + ".xml";
+        }
 
-          public virtual void LoadContent()
-          {
-               content = new ContentManager(
-                   Screen.Instance.Content.ServiceProvider, "Content");
-          }
+        public virtual void LoadContent()
+        {
+            content = new ContentManager(
+                Screen.Instance.Content.ServiceProvider, "Content");
+        }
 
-          public virtual void UnloadContent()
-          {
-               content.Unload();
-          }
+        public virtual void UnloadContent()
+        {
+            content.Unload();
+        }
 
-          public virtual void Update(GameTime gameTime)
-          {
-               Input.Instance.Update(gameTime);
-          }
+        public virtual void Update(GameTime gameTime)
+        {
+            Input.Instance.Update(gameTime);
+        }
 
-          public virtual void Draw(SpriteBatch spriteBatch)
-          {
-          }
-     }
+        public virtual void Draw(SpriteBatch spriteBatch)
+        {
+        }
+    }
 }

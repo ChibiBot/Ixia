@@ -45,3 +45,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/Rpgtutorial/TileMapEditor/obj/Debug
+/Rpgtutorial/.vs/Rpgtutorial
+/Rpgtutorial/Rpgtutorial/obj/x86/Debug
+/Rpgtutorial/Rpgtutorial/bin/x86/debug

@@ -4,10 +4,10 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Chibi/Documents/Ixia/Rpgtutorial/Rpgtutorial/Content/SplashScreen/twilight_splash.png</File>
-    <File>C:/Users/Chibi/Documents/Ixia/Rpgtutorial/Rpgtutorial/Content/Fonts/Arial.spritefont</File>
-    <File>C:/Users/Chibi/Documents/Ixia/Rpgtutorial/Rpgtutorial/Content/Screen/blackPixel.png</File>
-    <File>C:/Users/Chibi/Documents/Ixia/Rpgtutorial/Rpgtutorial/Content/Load/Gameplay/Player.png</File>
-    <File>C:/Users/Chibi/Documents/Ixia/Rpgtutorial/Rpgtutorial/Content/Load/Gameplay/TileSheets/Ground.png</File>
+    <File>C:/Users/brews/Ixia/Rpgtutorial/Rpgtutorial/Content/SplashScreen/twilight_splash.png</File>
+    <File>C:/Users/brews/Ixia/Rpgtutorial/Rpgtutorial/Content/Fonts/Arial.spritefont</File>
+    <File>C:/Users/brews/Ixia/Rpgtutorial/Rpgtutorial/Content/Screen/blackPixel.png</File>
+    <File>C:/Users/brews/Ixia/Rpgtutorial/Rpgtutorial/Content/Load/Gameplay/Player.png</File>
+    <File>C:/Users/brews/Ixia/Rpgtutorial/Rpgtutorial/Content/Load/Gameplay/TileSheets/Ground.png</File>
   </SourceFiles>
 </SourceFileCollection>
